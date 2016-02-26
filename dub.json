@@ -1,0 +1,9 @@
+{
+	"name": "kontainer",
+	"description": "Container Collections for D language",
+	"copyright": "Copyright © 2016, alphakai",
+	"authors": ["alphakai"],
+  "license":"MIT",
+	"dependencies": {
+	}
+}
