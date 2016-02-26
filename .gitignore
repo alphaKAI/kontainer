@@ -5,3 +5,4 @@
 dub.selections.json
 kontainer
 !kontainer/
+.dub
