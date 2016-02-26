@@ -1,0 +1,7 @@
+*.o
+*.*.swp
+.*.*.swp
+.git
+dub.selections.json
+kontainer
+!kontainer/
