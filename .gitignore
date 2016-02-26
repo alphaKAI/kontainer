@@ -1,6 +1,6 @@
 *.o
-*.*.swp
-.*.*.swp
+*.*.sw*
+.*.*.sw*
 .git
 dub.selections.json
 kontainer
