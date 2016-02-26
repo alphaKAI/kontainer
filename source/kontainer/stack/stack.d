@@ -13,6 +13,10 @@ struct Stack(T) {
     return t;
   }
   
+  @property size_t length() {
+    return stack.length;
+  }
+
   @property void push(T value) {
     stack ~= value;
   }
