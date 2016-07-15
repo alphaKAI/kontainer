@@ -41,7 +41,6 @@ struct LinkedList(T) {
     }
   }
 
-  
   void freeNode(Node!T* node) {
     if (node !is null) {
       GC.free(node);
@@ -71,7 +70,13 @@ struct LinkedList(T) {
   }
 
   @property bool empty() {
-    return thisNode is null;
+    bool ret = thisNode is null;
+
+    if (ret && thisNode != _firstNode) {
+      _thisNode = _firstNode;
+    }
+
+    return ret;
   }
 
   @property Node!T* front() {
