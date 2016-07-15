@@ -41,6 +41,53 @@ struct LinkedList(T) {
     }
   }
 
+  void moveFirst() {
+    _thisNode = _firstNode;
+  }
+
+  void removeNode(Node!T* node) {
+    moveFirst;
+
+    if (node == _firstNode) {
+      auto tempNode = _firstNode;
+      _firstNode = _firstNode.nextNode;
+      _firstNode.prevNode = null;
+
+      freeNode(tempNode);
+      return;
+    } else if (node == _lastNode) {
+      auto tempNode = _lastNode;
+
+      _lastNode = _lastNode.prevNode;
+      _lastNode.nextNode = null;
+
+      freeNode(tempNode);
+      return;
+    }
+
+    foreach (tnode; this) {
+      if (tnode == node) {
+        tnode.prevNode.nextNode = tnode.nextNode;
+        tnode.nextNode.prevNode = tnode.prevNode;
+
+        freeNode(tnode);
+        return;
+      }
+    }
+  }
+
+  Node!T* findNode(T key) {
+    _thisNode = _firstNode;
+
+    foreach (tnode; this) {
+      if (tnode.value == key) {
+        return tnode;
+      }
+    }
+
+    return null;
+  }
+
   void freeNode(Node!T* node) {
     if (node !is null) {
       GC.free(node);
