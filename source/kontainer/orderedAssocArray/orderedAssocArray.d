@@ -85,7 +85,6 @@ class OrderedAssocArray(KeyType, ValueType) {
 
     if (key !in this.assoc) {
       _key  = cast(KeyType*)GC.malloc(key.sizeof, GC.BlkAttr.NO_SCAN);
-      writeln("[malloc] - ", _key);
       *_key = key;
       this.keys.append(_key);
     }
