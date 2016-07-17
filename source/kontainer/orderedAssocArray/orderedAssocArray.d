@@ -141,6 +141,16 @@ class OrderedAssocArray(KeyType, ValueType) {
     }
   }
 
+  typeof(this) opBinary(string s)(typeof(this) that) if (s == "~") {
+    typeof(this) newThis = new typeof(this)(this);
+
+    foreach (pair; that) {
+      newThis.add(pair);
+    }
+
+    return newThis;
+  }
+
   void opIndexAssign(ValueType value, KeyType key) {
     this.add(key, value);
   }
