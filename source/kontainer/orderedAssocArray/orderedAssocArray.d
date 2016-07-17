@@ -65,6 +65,12 @@ class OrderedAssocArray(KeyType, ValueType) {
 
   this() {}
 
+  this(ValueType[KeyType] asc) {
+    foreach (key, value; asc) {
+      this.add(key, value);
+    }
+  }
+
   this(typeof(this) at) {
     copyCotr(at);
   }
