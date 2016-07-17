@@ -133,7 +133,11 @@ class OrderedAssocArray(KeyType, ValueType) {
       return this.assoc[key];
     } else {
       import std.conv : to;
-      throw new Error("Nu such a key : " ~ key.to!string);
+      if (cast(ValueType)null) {
+        return null;
+      } else {
+        throw new Error("Nu such a key : " ~ key.to!string);
+      }
     }
   }
 
