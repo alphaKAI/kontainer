@@ -83,6 +83,10 @@ class OrderedAssocArray(KeyType, ValueType) {
     }
   }
 
+  void add(Pair!(KeyType, ValueType) pair) {
+    this.add(pair.key, pair.value);
+  }
+
   void add(KeyType key, ValueType value) {
     KeyType* _key;
 
