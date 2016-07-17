@@ -107,6 +107,26 @@ class OrderedAssocArray(KeyType, ValueType) {
     return (key in this.assoc) ? true : false;
   }
 
+  @property KeyType[] keys() {
+    KeyType[] ar;
+
+    foreach (node; _keys) {
+      ar ~= *node.value;
+    }
+
+    return ar;
+  }
+
+  @property ValueType[] values() {
+    ValueType[] ar;
+
+    foreach (node; _keys) {
+      ar ~= this[*node.value];
+    }
+
+    return ar;
+  }
+
   /* Assign Operator Overloadings */
   ValueType opIndex(KeyType key) {
     if (key in this.assoc) {
