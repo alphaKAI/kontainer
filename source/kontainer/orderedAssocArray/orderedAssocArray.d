@@ -72,18 +72,15 @@ class OrderedAssocArray(KeyType, ValueType) {
   }
 
   this(typeof(this) at) {
-    copyCotr(at);
+    foreach (pair; at) {
+      this.add(pair);
+    }
   }
 
   void free() {
     foreach (node; this._keys) {
       GC.free(node.value);
     }
-  }
-
-  void copyCotr(typeof(this) at) {
-    this.assoc = at.assoc;
-    this._keys  = at._keys;
   }
 
   void add(KeyType key, ValueType value) {
