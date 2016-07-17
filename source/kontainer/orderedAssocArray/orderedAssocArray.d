@@ -60,7 +60,7 @@ struct Pair(KeyType, ValueType) {
 }
 
 class OrderedAssocArray(KeyType, ValueType) {
-  LinkedList!(KeyType*) keys;
+  LinkedList!(KeyType*) _keys;
   private ValueType[KeyType] assoc;
 
   this() {}
@@ -76,14 +76,14 @@ class OrderedAssocArray(KeyType, ValueType) {
   }
 
   void free() {
-    foreach (node; this.keys) {
+    foreach (node; this._keys) {
       GC.free(node.value);
     }
   }
 
   void copyCotr(typeof(this) at) {
     this.assoc = at.assoc;
-    this.keys  = at.keys;
+    this._keys  = at._keys;
   }
 
   void add(KeyType key, ValueType value) {
@@ -92,7 +92,7 @@ class OrderedAssocArray(KeyType, ValueType) {
     if (key !in this.assoc) {
       _key  = cast(KeyType*)GC.malloc(key.sizeof, GC.BlkAttr.NO_SCAN);
       *_key = key;
-      this.keys.append(_key);
+      this._keys.append(_key);
     }
 
     this.assoc[key] = value;
@@ -117,20 +117,20 @@ class OrderedAssocArray(KeyType, ValueType) {
   }
 
   @property size_t length() {
-    return this.keys.length;
+    return this._keys.length;
   }
 
   @property bool empty() {
-    return this.keys.empty;
+    return this._keys.empty;
   }
 
   @property Pair!(KeyType, ValueType) front() {
-    KeyType key = *(this.keys.front.value);
+    KeyType key = *(this._keys.front.value);
     return Pair!(KeyType, ValueType)(key, this.assoc[key]);
   }
 
   @property void popFront() {
-    this.keys.popFront;
+    this._keys.popFront;
   }
 
   @property override string toString() {
