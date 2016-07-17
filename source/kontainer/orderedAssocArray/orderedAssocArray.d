@@ -103,6 +103,10 @@ class OrderedAssocArray(KeyType, ValueType) {
     return new typeof(this)(this);
   }
 
+  bool contains(KeyType key) {
+    return (key in this.assoc) ? true : false;
+  }
+
   /* Assign Operator Overloadings */
   ValueType opIndex(KeyType key) {
     if (key in this.assoc) {
